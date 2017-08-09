@@ -5,7 +5,10 @@ var roleBuilder = require('role.builder');
 var roleUpgrader = require('role.upgrader');
 
 module.exports.loop = function () {
-    defenseMode();
+   Game.rooms.forEach(function(roomName) {
+        defenseMode(roomName);
+   });
+   
 
   
     
@@ -13,7 +16,7 @@ module.exports.loop = function () {
     
    
 }
-function defenseMode(){
+function defenseMode(roomName){
     //// Check if we have invaders
     /// if we have, engage defender
     ///engage tower
@@ -31,7 +34,7 @@ function defenseMode(){
             '\uD83D\uDE48' + spawningCreep.memory.role,1,1);
 }
 
-function constructMode(){
+function constructMode(roomName){
     //// Check controller level
     //// Check How many extension we have
     //// Engage one builder if needed
@@ -54,7 +57,7 @@ function constructMode(){
         }
     
 }
-function farmingMode(){
+function farmingMode(roomName){
    //// Check Controller level
    //// Engage at least one creep to upgrade it
    //// Check Energy level on Every Structure
@@ -72,7 +75,7 @@ function farmingMode(){
     } 
 }
 
-function spawningMode(){
+function spawningMode(roomName){
     /// Check le nombre de ressource restante de la room. 
     /// Si, en allouant la moitié, on a plus que ce qu'il faut pour créer le plus gros monstre, on créé un creep
     /// On check le pourcentage de soldat, si on est en dessous de (niveau de la room*15)%/75% (le pourcentage max est juste de 75%, le min est de 15%)
