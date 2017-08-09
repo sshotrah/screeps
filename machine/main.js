@@ -1,8 +1,8 @@
 //Game.spawns['Spawn1'].createCreep( [WORK, CARRY, MOVE], 'Harvester1' );
 
-var roleHarvester = require('role/harvester');
-var roleBuilder = require('role/builder');
-var roleUpgrader = require('role/upgrader');
+var roleHarvester = require('role.harvester');
+var roleBuilder = require('role.builder');
+var roleUpgrader = require('role.upgrader');
 
 module.exports.loop = function () {
 
