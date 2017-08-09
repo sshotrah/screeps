@@ -5,9 +5,9 @@ var roleBuilder = require('role.builder');
 var roleUpgrader = require('role.upgrader');
 
 module.exports.loop = function () {
-   Game.rooms.forEach(function(roomName) {
-        defenseMode(roomName);
-   });
+    for(var roomName in Game.rooms ){
+         defenseMode(roomName);
+    }
    
 
   
@@ -21,8 +21,8 @@ function defenseMode(roomName){
     /// if we have, engage defender
     ///engage tower
     ///defend
-    
-    var hostile = Game.rooms.find(FIND_HOSTILE_CREEPS);
+    console.log(roomName);
+    var hostile = Game.rooms[roomName].find(FIND_HOSTILE_CREEPS);
     if(hostile.length > 0){
         var towers = Game.rooms[roomName].find(FIND_MY_STRUCTURES, {
             filter: {structureType: STRUCTURE_TOWER}
@@ -30,8 +30,8 @@ function defenseMode(roomName){
         towers.forEach(tower => tower.attack(hostiles[0]));
     }
      
-    Game.rooms.visual.text(
-            '\uD83D\uDE48' + spawningCreep.memory.role,1,1);
+    Game.rooms[roomName].visual.text(
+            '\uD83D\uDE48' ,1,1);
 }
 
 function constructMode(roomName){
