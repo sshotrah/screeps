@@ -56,3 +56,23 @@ module.exports.loop = function () {
         }
     }
 }
+
+function farmingMode(){
+    
+    
+}
+
+function constructMode(){
+    
+    
+}
+
+function defenseMode(){
+    
+    
+}
+
+function attackMode(){
+    
+    
+}
