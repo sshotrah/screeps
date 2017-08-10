@@ -3,6 +3,7 @@
 var roleHarvester = require('role.harvester');
 var roleBuilder = require('role.builder');
 var roleUpgrader = require('role.upgrader');
+var roleSoldier = require('role.soldier');
 
 module.exports.loop = function () {
     for(var roomName in Game.rooms ){
@@ -103,7 +104,9 @@ function farmingMode(roomName){
         if(creep.memory.role == 'upgrader') {
             roleUpgrader.run(creep);
         }
-       
+        if(creep.memory.role == 'soldier') {
+            roleSoldier.run(creep);
+        }
     } 
 }
 
