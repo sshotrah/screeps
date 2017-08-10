@@ -68,6 +68,25 @@ function farmingMode(roomName){
    //// Check Energy level on Every Structure
    //// If not full, engage harvester
    //// if full, engage upgrader
+   
+    
+    var hasOneUpgrader = Game.rooms[roomName].find(FIND_MY_CREEPS, {
+                filter: (creep) => creep.memory.role == 'upgrader'
+            });
+    var listOisif = Game.rooms[roomName].find(FIND_MY_CREEPS, {
+                filter: (creep) => creep.memory.role == 'oisif'
+            });
+    
+    if(hasOneUpgrader.length == 0){
+
+        listOisif[0].memory.role = 'upgrader';
+        listOisif.splice(0,1);
+    }
+    
+    listOisif.forEach(function(creep){
+        console.log(creep);
+    });
+    
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
         if(creep.memory.role == 'harvester') {
@@ -93,8 +112,10 @@ function spawningMode(roomName){
             //_.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
     var sources = Game.rooms[roomName].find(FIND_SOURCES);
     if(sources[0].energyCapacity / sources[0].energy < 2) {
-        var newName = Game.spawns['Spawn1'].createCreep([WORK,CARRY,MOVE], undefined, {role: 'oisif'});
-        console.log('Spawning new oisif: ' + newName);
+        if(Game.spawns['Spawn1'].canCreateCreep([WORK,CARRY,MOVE],undefined) == OK){
+            var newName = Game.spawns['Spawn1'].createCreep([WORK,CARRY,MOVE], undefined, {role: 'oisif'});
+            console.log('Spawning new oisif: ' + newName);
+        }
     }
     
     if(Game.spawns['Spawn1'].spawning) { 
