@@ -76,11 +76,7 @@ function farmingMode(roomName){
                 filter: (creep) => creep.memory.role == 'oisif'
             });
     
-    if(hasOneUpgrader.length == 0){
-
-        listOisif[0].memory.role = 'upgrader';
-        listOisif.splice(0,1);
-    }
+    /*
     
     listOisif.forEach(function(creep){
         var structureFull = Game.rooms[roomName].find(FIND_MY_STRUCTURES, {
@@ -97,7 +93,7 @@ function farmingMode(roomName){
             creep.memory.role = 'harvester';
         }
       
-    });
+    });*/
     
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
