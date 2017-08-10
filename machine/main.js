@@ -53,7 +53,8 @@ function constructMode(roomName){
         var closestDamagedStructure = Game.rooms[roomName].find(FIND_MY_STRUCTURES, {
                 filter: (structure) => structure.hits < structure.hitsMax
             });
-        if(closestDamagedStructure) {
+            
+        if(closestDamagedStructure.length > 0) {
            var closestBuilder = closestDamagedStructure.pos.findClosestByRange(FIND_CREEPS, {
                 filter: (creep) => creep.memory.role == 'builder'
             });
