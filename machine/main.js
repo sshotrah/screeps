@@ -109,12 +109,12 @@ function farmingMode(roomName){
 
 function spawningMode(roomName){
     /// Check le nombre de ressource restante de la room. 
-    /// Si, en allouant la moitiÃ©, on a plus que ce qu'il faut pour crÃ©er le plus gros monstre, on crÃ©Ã© un creep
+    /// Si, en allouant la moitiÃÂ©, on a plus que ce qu'il faut pour crÃÂ©er le plus gros monstre, on crÃÂ©ÃÂ© un creep
     /// On check le pourcentage de soldat, si on est en dessous de (niveau de la room*15)%/75% (le pourcentage max est juste de 75%, le min est de 15%)
     /// Si en dessous on produit un soldat, de nouveau calcul pour savoir de quel type
     /// sinon, on produit un oisif
     
-    /// On détermine des quotas en fonction du niveau de controller
+    /// On dÃ©termine des quotas en fonction du niveau de controller
    
     var levelController =  Game.rooms[roomName].controller.level;
     var totalUnit = levelController * (levelController + 9);
@@ -145,6 +145,7 @@ function spawningMode(roomName){
             if(Game.spawns['Spawn1'].canCreateCreep([WORK,CARRY,MOVE],undefined) == OK){
                 var newName = Game.spawns['Spawn1'].createCreep([WORK,CARRY,MOVE], undefined, {role: 'harvester'});
                 spawningtext = '\uD83D\uDE48' + ' Spawn d\'un nouveau Harvester: ' + newName;
+                Game.spawns['Spawn1'].memory.spawntext = spawningtext;
                 break;
             }
         }
@@ -152,6 +153,7 @@ function spawningMode(roomName){
             if(Game.spawns['Spawn1'].canCreateCreep([WORK,CARRY,MOVE],undefined) == OK){
                 var newName = Game.spawns['Spawn1'].createCreep([WORK,CARRY,MOVE], undefined, {role: 'builder'});
                 spawningtext = '\uD83D\uDE48' + ' Spawn d\'un nouveau Builder: ' + newName;
+                 Game.spawns['Spawn1'].memory.spawntext = spawningtext;
                 break;
             }
         }
@@ -159,6 +161,7 @@ function spawningMode(roomName){
             if(Game.spawns['Spawn1'].canCreateCreep([WORK,CARRY,MOVE],undefined) == OK){
                 var newName = Game.spawns['Spawn1'].createCreep([WORK,CARRY,MOVE], undefined, {role: 'upgrader'});
                 spawningtext = '\uD83D\uDE48' + ' Spawn d\'un nouveau Upgrader: ' + newName;
+                 Game.spawns['Spawn1'].memory.spawntext = spawningtext;
                 break;
             }
         }
@@ -166,6 +169,7 @@ function spawningMode(roomName){
             if(Game.spawns['Spawn1'].canCreateCreep([ATTACK,TOUGH,MOVE],undefined) == OK){
                 var newName = Game.spawns['Spawn1'].createCreep([WORK,CARRY,MOVE], undefined, {role: 'soldier'});
                 spawningtext = '\uD83D\uDE48' + ' Spawn d\'un nouveau Soldat: ' + newName;
+                 Game.spawns['Spawn1'].memory.spawntext = spawningtext;
                 break;
             }
         }
@@ -173,17 +177,17 @@ function spawningMode(roomName){
     }
     
     if(Game.spawns['Spawn1'].spawning) { 
-        var spawningCreep = Game.creeps[Game.spawns['Spawn1'].spawning.name];
         Game.spawns['Spawn1'].room.visual.text(
-            spawningtext + spawningCreep.memory.role,
+            Game.spawns['Spawn1'].memory.spawntext,
             Game.spawns['Spawn1'].pos.x + 1, 
             Game.spawns['Spawn1'].pos.y, 
             {align: 'left', opacity: 0.8});
+            
     }
 }
 
 function attackMode(){
-    /// a dÃ©velopper
+    /// a dÃÂ©velopper
     
 }
 
