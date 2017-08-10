@@ -6,7 +6,11 @@ var roleUpgrader = require('role.upgrader');
 
 module.exports.loop = function () {
     for(var roomName in Game.rooms ){
-         defenseMode(roomName);
+        defenseMode(roomName);
+        constructMode(roomName);
+        farmingMode(roomName);
+        spawningMode(roomName);
+        cleaning();
     }
    
 
