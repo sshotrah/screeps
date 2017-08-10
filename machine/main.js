@@ -50,7 +50,7 @@ function constructMode(roomName){
             roleBuilder.run(creep);
         }
     }
-        var closestDamagedStructure = Game.rooms.find(FIND_MY_STRUCTURES, {
+        var closestDamagedStructure = Game.rooms[roomName].find(FIND_MY_STRUCTURES, {
                 filter: (structure) => structure.hits < structure.hitsMax
             });
         if(closestDamagedStructure) {
@@ -90,7 +90,7 @@ function spawningMode(roomName){
    
             
             //_.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
-    var sources = Game.rooms.find(FIND_SOURCES);
+    var sources = Game.rooms[roomName].find(FIND_SOURCES);
     if(sources[0].energyCapacity / sources[0].energy < 2) {
         var newName = Game.spawns['Spawn1'].createCreep([WORK,CARRY,MOVE], undefined, {role: 'oisif'});
         console.log('Spawning new oisif: ' + newName);
