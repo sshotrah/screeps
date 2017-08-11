@@ -112,12 +112,12 @@ function farmingMode(roomName){
 
 function spawningMode(roomName){
     /// Check le nombre de ressource restante de la room. 
-    /// Si, en allouant la moitiÃÂ©, on a plus que ce qu'il faut pour crÃÂ©er le plus gros monstre, on crÃÂ©ÃÂ© un creep
+    /// Si, en allouant la moitiÃÂÃÂ©, on a plus que ce qu'il faut pour crÃÂÃÂ©er le plus gros monstre, on crÃÂÃÂ©ÃÂÃÂ© un creep
     /// On check le pourcentage de soldat, si on est en dessous de (niveau de la room*15)%/75% (le pourcentage max est juste de 75%, le min est de 15%)
     /// Si en dessous on produit un soldat, de nouveau calcul pour savoir de quel type
     /// sinon, on produit un oisif
     
-    /// On dÃ©termine des quotas en fonction du niveau de controller
+    /// On dÃÂ©termine des quotas en fonction du niveau de controller
    
     var levelController =  Game.rooms[roomName].controller.level;
     var totalUnit = levelController * (levelController + 9);
@@ -134,13 +134,12 @@ function spawningMode(roomName){
         totalBuilder = (hasconstructionsite.length > builderMax)? builderMax : hasconstructionsite.length;
     }
     var totalHarvester = totalOisif - totalBuilder;
-    
   
     
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
     var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
     var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
-    var army = _.filter(Game.creeps, (creep) => creep.memory.role == 'army');
+    var army = _.filter(Game.creeps, (creep) => creep.memory.role == 'soldier');
     var spawningtext = '';
     var file = 0;
     while(file == 0){
@@ -190,7 +189,7 @@ function spawningMode(roomName){
 }
 
 function attackMode(){
-    /// a dÃÂ©velopper
+    /// a dÃÂÃÂ©velopper
     
 }
 

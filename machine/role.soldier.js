@@ -1,22 +1,34 @@
-var roleUpgrader = {
+var roleSoldier = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
-        var flags = Game.flags;
-        if(!creep.memory.action){
-            creep.memory.action = flags[0];
-        }
-        for(var i = 0; i < flags.length; i++){
-            if(creep.pos != creep.memory.action.pos ){
-                creep.moveTo(creep.memory.action);
-            }else{
-                if(creep.memory.action == flags[i]){
-                    var n = (i < flags.length)? i+1: 0;
-                    creep.memory.action = flags[n];
+        var listFlag = creep.room.find(FIND_FLAGS);
+       
+        
+        if(creep.memory.action == null){
+            
+            creep.memory.action = listFlag[0].name;
+           
+        }else{
+            const flagMem = Game.flags[creep.memory.action];
+          
+            for(var i = 0; i < listFlag.length; i++){
+                
+                if(!creep.pos.isEqualTo(flagMem.pos)){
+                    creep.moveTo(flagMem);
+                }else{
+                   
+                    if(flagMem.name == listFlag[i].name){
+                        
+                        var n = (i < (listFlag.length - 1))? i+1: 0;
+                        
+                        creep.memory.action = listFlag[n].name;
+                    }
                 }
+             
             }
         }
     }
 };
 
-module.exports = roleUpgrader;
+module.exports = roleSoldier;
